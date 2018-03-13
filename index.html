@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>B2W API</title>
+    <!-- inject:css -->
+    <!-- endinject -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.9/angular.js" charset="utf-8"></script>
+    <!-- inject:js -->
+    <!-- endinject -->
+  </head>
+  <body>
+    <div class="grid" ng-app="b2w" ng-controller="b2w-controller">
+      <div class="row center mini">
+        <div class="col-6 pad-30 bg-sidebar">
+          <div class="row">
+            <div class="col">
+              <div class="align-center">
+                <img class="image-circle pad-bottom-10" src="https://raw.githubusercontent.com/b2w-marketplace/code-challenge/master/files/avatar-dev.png" alt="avatar">
+                <p class="text-white text-size-30 pad-bottom-15 text-uppercase text-bold">{{JSONData.name}}</p>
+                <p class="text-white text-size-20 text-uppercase">{{JSONData.profession}}</p>
+                <div class="pad-both-20"><hr></div>
+                <div class="row center">
+                  <div class="col-4">
+                    <p class="text-white text-bold text-size-15">PROFILE</p>
+                    <div class="pad-top-10 pad-bottom-20"><hr></div>
+                  </div>
+                </div>
+                <div class="row center pad-bottom-20">
+                  <div class="col-10">
+                    <p class="text-white text-size-15">
+                      {{JSONData.description}}
+                    </p>
+                  </div>
+                </div>
+                <div class="row center">
+                  <div class="col-4">
+                    <p class="text-white text-bold text-size-15">CONTACT</p>
+                    <div class="pad-top-10 pad-bottom-20"><hr></div>
+                  </div>
+                </div>
+                <div class="row center pad-bottom-20">
+                  <div class="col-10">
+                    <ul class="text-white text-size-15" ng-repeat="(key, value) in JSONData.contact">
+                      <li class="pad-bottom-20">{{value}}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="row center">
+                  <div class="col-4">
+                    <p class="text-white text-bold text-size-15">SKILLS</p>
+                    <div class="pad-top-10 pad-bottom-20"><hr></div>
+                  </div>
+                </div>
+                <div class="row center pad-bottom-20">
+                  <div class="col-10">
+                    <ul class="text-white text-size-15" ng-repeat="key in JSONData.skills">
+                      <li class="pad-bottom-20">
+                        <p class="text-uppercase text-size-15 pad-bottom-15">{{key.name}}</p>
+                        <progress class="progress-bar" value="{{replacePercentage(key.value)}}" max="100"></progress>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="container col-6 pad-top-50">
+            <div class="row center">
+              <div class="col-11">
+                <p class="text-bold text-size-30">WORK EXPERIENCE</p>
+                <div class="pad-top-5 pad-bottom-20"><hr class="hr-strong"></div>
+                <ul class="pad-bottom-35" ng-repeat='key in JSONData.experience'>
+                  <li>
+                    <p class="text-uppercase text-bold text-size-15">{{key.name}}</p>
+                  </li>
+                  <li class="pad-both-15">
+                    <p>{{key.date}} -</p>
+                  </li>
+                  <li>
+                    <p>{{key.description}}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="container col-8 pad-top-50">
+            <div class="row center">
+              <div class="col-11">
+                <p class="text-bold text-size-30">EDUCATION</p>
+                <div class="pad-top-5 pad-bottom-20"><hr class="hr-strong"></div>
+                <ul class="pad-bottom-35" ng-repeat='key in JSONData.education'>
+                  <li>
+                    <p class="text-uppercase text-bold text-size-15">{{key.name}}</p>
+                  </li>
+                  <li class="pad-both-15">
+                    <p>{{key.date}} -</p>
+                  </li>
+                  <li>
+                    <p>{{key.description}}</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
